@@ -1,0 +1,84 @@
+﻿<Window x:Class="XwaHullIconGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XwaHullIconGenerator"
+        mc:Ignorable="d"
+        Title="Xwa Hull Icon Generator"
+        Height="600" Width="1000"
+        UseLayoutRounding="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Button x:Name="OpenButton" Grid.Column="0" Grid.Row="0" Content="Open..." Margin="20" Click="OpenButton_Click" />
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Margin="20" Text="{Binding FileName}" />
+
+        <DockPanel Grid.Column="0" Grid.Row="1">
+            <Button x:Name="TopColorImageSaveButton" DockPanel.Dock="Bottom" Content="Save Color..." Click="TopColorImageSaveButton_Click" />
+            <Image x:Name="TopColorImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="1" Grid.Row="1">
+            <Button x:Name="TopGrayScaleLightImageSaveButton" DockPanel.Dock="Bottom" Content="Save GrayScale Light..." Click="TopGrayScaleLightImageSaveButton_Click" />
+            <Image x:Name="TopGrayScaleLightImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="2" Grid.Row="1">
+            <Button x:Name="TopGrayScaleDarkImageSaveButton" DockPanel.Dock="Bottom" Content="Save GrayScale Dark..." Click="TopGrayScaleDarkImageSaveButton_Click" />
+            <Image x:Name="TopGrayScaleDarkImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="1">
+            <Button x:Name="TopBlueImageSaveButton" DockPanel.Dock="Bottom" Content="Save Blue..." Click="TopBlueImageSaveButton_Click" />
+            <Image x:Name="TopBlueImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+
+        <DockPanel Grid.Column="0" Grid.Row="2">
+            <Button x:Name="FrontColorImageSaveButton" DockPanel.Dock="Bottom" Content="Save Color..." Click="FrontColorImageSaveButton_Click" />
+            <Image x:Name="FrontColorImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="1" Grid.Row="2">
+            <Button x:Name="FrontGrayScaleLightImageSaveButton" DockPanel.Dock="Bottom" Content="Save GrayScale Light..." Click="FrontGrayScaleLightImageSaveButton_Click" />
+            <Image x:Name="FrontGrayScaleLightImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="2" Grid.Row="2">
+            <Button x:Name="FrontGrayScaleDarkImageSaveButton" DockPanel.Dock="Bottom" Content="Save GrayScale Dark..." Click="FrontGrayScaleDarkImageSaveButton_Click" />
+            <Image x:Name="FrontGrayScaleDarkImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="2">
+            <Button x:Name="FrontBlueImageSaveButton" DockPanel.Dock="Bottom" Content="Save Blue..." Click="FrontBlueImageSaveButton_Click" />
+            <Image x:Name="FrontBlueImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+
+        <DockPanel Grid.Column="0" Grid.Row="3">
+            <Button x:Name="SideColorImageSaveButton" DockPanel.Dock="Bottom" Content="Save Color..." Click="SideColorImageSaveButton_Click" />
+            <Image x:Name="SideColorImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="1" Grid.Row="3">
+            <Button x:Name="SideGrayScaleLightImageSaveButton" DockPanel.Dock="Bottom" Content="Save GrayScale Light..." Click="SideGrayScaleLightImageSaveButton_Click" />
+            <Image x:Name="SideGrayScaleLightImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="2" Grid.Row="3">
+            <Button x:Name="SideGrayScaleDarkImageSaveButton" DockPanel.Dock="Bottom" Content="Save GrayScale Dark..." Click="SideGrayScaleDarkImageSaveButton_Click" />
+            <Image x:Name="SideGrayScaleDarkImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+        <DockPanel Grid.Column="3" Grid.Row="3">
+            <Button x:Name="SideBlueImageSaveButton" DockPanel.Dock="Bottom" Content="Save Blue..." Click="SideBlueImageSaveButton_Click" />
+            <Image x:Name="SideBlueImage" RenderOptions.BitmapScalingMode="Unspecified" RenderOptions.EdgeMode="Aliased" />
+        </DockPanel>
+
+        <TextBlock Grid.Column="0" Grid.Row="4" Margin="20" Text="Icon Size: " />
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="20" Text="{Binding IconSize}" />
+        <Button x:Name="UpdateButton" Grid.Column="2" Grid.Row="4" Content="Update Icons" Margin="20" Click="UpdateButton_Click" />
+        <Button x:Name="SaveAllIconsButton" Grid.Column="3" Grid.Row="4" Content="Save All..." Margin="20" Click="SaveAllIconsButton_Click" />
+    </Grid>
+</Window>
