@@ -339,9 +339,9 @@ namespace XwaHullIconGenerator
 
                     foreach (var optFace in optFaceGroup.Faces)
                     {
-                        Index positionsIndex = optFace.VerticesIndex;
-                        Index normalsIndex = optFace.VertexNormalsIndex;
-                        Index textureCoordinatesIndex = optFace.TextureCoordinatesIndex;
+                        Indices positionsIndex = optFace.VerticesIndex;
+                        Indices normalsIndex = optFace.VertexNormalsIndex;
+                        Indices textureCoordinatesIndex = optFace.TextureCoordinatesIndex;
 
                         BasicVertex vertex = new BasicVertex();
 
@@ -428,7 +428,7 @@ namespace XwaHullIconGenerator
         {
         }
 
-        public void Update(StepTimer timer)
+        public void Update(ITimer timer)
         {
         }
 

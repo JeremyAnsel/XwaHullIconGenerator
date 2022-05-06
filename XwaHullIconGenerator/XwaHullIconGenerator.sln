@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XwaHullIconGenerator", "XwaHullIconGenerator\XwaHullIconGenerator.csproj", "{624F695B-5667-4991-B1BC-CAE8A1154E3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XwaHullIconGenerator", "XwaHullIconGenerator\XwaHullIconGenerator.csproj", "{07231149-FFC4-4B56-9B80-85FBC779649C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{624F695B-5667-4991-B1BC-CAE8A1154E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{624F695B-5667-4991-B1BC-CAE8A1154E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{624F695B-5667-4991-B1BC-CAE8A1154E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{624F695B-5667-4991-B1BC-CAE8A1154E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07231149-FFC4-4B56-9B80-85FBC779649C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07231149-FFC4-4B56-9B80-85FBC779649C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07231149-FFC4-4B56-9B80-85FBC779649C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07231149-FFC4-4B56-9B80-85FBC779649C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5CCE3F3F-25A7-4FF8-ACC5-813269A6E700}
+		SolutionGuid = {1ABF9920-B90A-448C-AFF8-1770EAA96394}
 	EndGlobalSection
 EndGlobal
