@@ -47,6 +47,12 @@ namespace XwaHullIconGenerator
         public static readonly DependencyProperty IconSizeProperty =
             DependencyProperty.Register("IconSize", typeof(int), typeof(MainWindow), new PropertyMetadata(256));
 
+        public int OptVersion { get; private set; }
+
+        public string OptObjectProfile { get; private set; }
+
+        public List<string> OptObjectSkins { get; } = new();
+
         private string GetOpenOptFileName()
         {
             var dialog = new Microsoft.Win32.OpenFileDialog
@@ -100,7 +106,17 @@ namespace XwaHullIconGenerator
                 return;
             }
 
+            var dialog = new OptProfileSelectorDialog(fileName);
+
+            if (dialog.ShowDialog() != true)
+            {
+                return;
+            }
+
             this.FileName = fileName;
+            this.OptVersion = dialog.SelectedVersion;
+            this.OptObjectProfile = dialog.SelectedObjectProfile;
+            this.OptObjectSkins.AddRange(dialog.SelectedSkins);
 
             try
             {
@@ -152,7 +168,7 @@ namespace XwaHullIconGenerator
         private BitmapSource CreateBitmapFromHullIcon(RenderFace side, RenderMethod method)
         {
             int size = this.IconSize;
-            byte[] buffer = HullIconGenerator.Generate((uint)size, (uint)size, this.FileName, side, method);
+            byte[] buffer = HullIconGenerator.Generate((uint)size, (uint)size, this.FileName, this.OptVersion, this.OptObjectProfile, this.OptObjectSkins, side, method);
             return BitmapSource.Create(size, size, 96, 96, PixelFormats.Bgra32, null, buffer, size * 4);
         }
 
@@ -174,7 +190,7 @@ namespace XwaHullIconGenerator
                 }
 
                 int size = this.IconSize;
-                byte[] buffer = HullIconGenerator.Generate((uint)size, (uint)size, this.FileName, side, method);
+                byte[] buffer = HullIconGenerator.Generate((uint)size, (uint)size, this.FileName, this.OptVersion, this.OptObjectProfile, this.OptObjectSkins, side, method);
 
                 BitmapHelpers.SaveBitmap(fileName, buffer, size, size);
             }
@@ -268,7 +284,7 @@ namespace XwaHullIconGenerator
                 {
                     foreach (RenderMethod method in Enum.GetValues(typeof(RenderMethod)))
                     {
-                        buffers.Add(HullIconGenerator.Generate((uint)size, (uint)size, this.FileName, side, method));
+                        buffers.Add(HullIconGenerator.Generate((uint)size, (uint)size, this.FileName, this.OptVersion, this.OptObjectProfile, this.OptObjectSkins, side, method));
                     }
                 }
 

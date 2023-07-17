@@ -11,7 +11,7 @@ namespace XwaHullIconGenerator
 {
     static class HullIconGenerator
     {
-        public static byte[] Generate(uint width, uint height, string optFileName, RenderFace side, RenderMethod method)
+        public static byte[] Generate(uint width, uint height, string optFilename, int version, string optObjectProfile, List<string> optObjectSkins, RenderFace side, RenderMethod method)
         {
             var options = new DeviceResourcesOptions
             {
@@ -20,7 +20,7 @@ namespace XwaHullIconGenerator
             };
 
             var deviceResources = new RenderTargetDeviceResources(width, height, D3D11FeatureLevel.FeatureLevel100, options);
-            var optComponent = new OptComponent(optFileName);
+            var optComponent = new OptComponent(optFilename, version, optObjectProfile, optObjectSkins);
 
             try
             {

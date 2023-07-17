@@ -42,21 +42,30 @@ namespace XwaHullIconGenerator
 
         private D3D11BlendState blendState1;
 
-        public OptComponent(string optFileName)
-            : this(XMMatrix.Identity, XMMatrix.Identity, optFileName)
+        public OptComponent(string optFilename, int version, string optObjectProfile, List<string> optObjectSkins)
+            : this(XMMatrix.Identity, XMMatrix.Identity, optFilename, version, optObjectProfile, optObjectSkins)
         {
         }
 
-        public OptComponent(XMFloat4X4 world, XMFloat4X4 view, string optFileName)
+        public OptComponent(XMFloat4X4 world, XMFloat4X4 view, string optFilename, int version, string optObjectProfile, List<string> optObjectSkins)
         {
             this.WorldMatrix = world;
             this.ViewMatrix = view;
-            this.OptFileName = optFileName;
+            this.OptFileName = optFilename;
+            this.OptVersion = version;
+            this.OptObjectProfile = optObjectProfile ?? "Default";
+            this.OptObjectSkins.AddRange(optObjectSkins ?? new());
         }
 
         public D3D11FeatureLevel MinimalFeatureLevel => D3D11FeatureLevel.FeatureLevel91;
 
         public string OptFileName { get; private set; }
+
+        public int OptVersion { get; private set; }
+
+        public string OptObjectProfile { get; private set; }
+
+        public List<string> OptObjectSkins { get; } = new();
 
         public float OptSize { get; private set; }
 
@@ -82,6 +91,36 @@ namespace XwaHullIconGenerator
             set { this.constantBufferData.Projection = ((XMMatrix)value).Transpose(); }
         }
 
+        private static string _currentOptKey;
+        private static OptFile _currentOpt;
+
+        private static OptFile GetOptFile(string optFilename, int version, string optObjectProfile, List<string> optObjectSkins)
+        {
+            string key = string.Join(";", optFilename, version, optObjectProfile, string.Join(",", optObjectSkins));
+
+            if (key == _currentOptKey)
+            {
+                return _currentOpt;
+            }
+
+            OptFile opt = OptFile.FromFile(optFilename);
+
+            var objectProfiles = OptModel.GetObjectProfiles(optFilename);
+            //var objectSkins = OptModel.GetSkins(optFilename);
+
+            if (!objectProfiles.TryGetValue(optObjectProfile, out List<int> objectProfile))
+            {
+                objectProfile = objectProfiles["Default"];
+            }
+
+            opt = OptModel.GetTransformedOpt(opt, version, objectProfile, optObjectSkins);
+
+            _currentOpt = opt;
+            _currentOptKey = key;
+
+            return _currentOpt;
+        }
+
         public void CreateDeviceDependentResources(DeviceResources resources)
         {
             this.deviceResources = resources;
@@ -98,7 +137,7 @@ namespace XwaHullIconGenerator
             //    opt = OptFile.FromFile(this.OptFileName);
             //}
 
-            OptFile opt = OptFile.FromFile(this.OptFileName);
+            OptFile opt = GetOptFile(this.OptFileName, this.OptVersion, this.OptObjectProfile, this.OptObjectSkins);
 
             this.OptSize = opt.Size * OptFile.ScaleFactor;
             this.OptSpanSize = opt.SpanSize.Scale(OptFile.ScaleFactor, OptFile.ScaleFactor, OptFile.ScaleFactor);
