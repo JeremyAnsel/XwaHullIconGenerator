@@ -3,6 +3,7 @@ using JeremyAnsel.DirectX.Dxgi;
 using JeremyAnsel.DirectX.DXMath;
 using JeremyAnsel.DirectX.GameWindow;
 using JeremyAnsel.Xwa.Opt;
+using JeremyAnsel.Xwa.OptTransform;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -105,15 +106,7 @@ namespace XwaHullIconGenerator
 
             OptFile opt = OptFile.FromFile(optFilename);
 
-            var objectProfiles = OptModel.GetObjectProfiles(optFilename);
-            //var objectSkins = OptModel.GetSkins(optFilename);
-
-            if (!objectProfiles.TryGetValue(optObjectProfile, out List<int> objectProfile))
-            {
-                objectProfile = objectProfiles["Default"];
-            }
-
-            opt = OptModel.GetTransformedOpt(opt, version, objectProfile, optObjectSkins);
+            opt = OptTransformModel.GetTransformedOpt(opt, version, optObjectProfile, optObjectSkins);
 
             _currentOpt = opt;
             _currentOptKey = key;

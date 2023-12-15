@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JeremyAnsel.Xwa.OptTransform.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -116,7 +117,7 @@ namespace XwaHullIconGenerator
             this.FileName = fileName;
             this.OptVersion = dialog.SelectedVersion;
             this.OptObjectProfile = dialog.SelectedObjectProfile;
-            this.OptObjectSkins.AddRange(dialog.SelectedSkins);
+            this.OptObjectSkins.AddRange(dialog.SelectedSkinsKeys);
 
             try
             {
